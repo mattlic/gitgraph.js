@@ -1,5 +1,6 @@
 var graphConfig = new GitGraph.Template({
-  colors: [ "#9993FF", "#47E8D4", "#6BDB52", "#F85BB5", "#FFA657", "#F85BB5" ],
+ // colors: ["#9993FF", "#47E8D4", "#6BDB52", "#F85BB5", "#FFA657", "#F85BB5"],
+  colors: ["#F85BB5", "#F85BB5", "#F85BB5", "#F85BB5", "#6BDB52", "#F85BB5", "#FFA657", "#F85BB5", "#47E8D4"],
   branch: {
     color: "#000000",
     lineWidth: 3,
@@ -62,7 +63,8 @@ var topicMasterCol = 3;
 var masterCol = 4;
 var topicStageCol = 5;
 var stageCol = 6;
-var releaseCol=7;
+var relTopic = 7;
+var releaseCol = 8;
 
 var gitgraph = new GitGraph(config);
 
@@ -73,7 +75,8 @@ var master = gitgraph.branch({
 master.commit("Initial commit");
 
 master.commit({
-  messageDisplay: false
+  messageDisplay: false,
+  message: "1"
 });
 
 
@@ -88,25 +91,26 @@ stage_16_0.commit({
   tagColor: 'gray'
 });
 
-stage_16_0.commit({
-  messageDisplay: false
-});
+//stage_16_0.commit({
+//  messageDisplay: false
+//});
 
 // stage_16_0.merge(master);
 
 master.commit({
-  messageDisplay: false
+  messageDisplay: false,
+  message: "2"
 });
 
-var feature1 = gitgraph.branch({
-  parentBranch: master,
-  name: "feature/1",
-  column: teamCol
-});
+//var feature1 = gitgraph.branch({
+//  parentBranch: master,
+//  name: "topic branch",
+//  column: teamCol
+//});
 
 stage_16_0.commit({
   messageDisplay: false
-})
+});
 
 var release_16_0 = gitgraph.branch({
   parentBranch: stage_16_0,
@@ -114,16 +118,16 @@ var release_16_0 = gitgraph.branch({
   column: releaseCol
 });
 
-feature1.commit("A feature to go into a futre release").commit({
-  messageDisplay: false
-});
+//feature1.commit("A feature to go into a futre release").commit({
+//  messageDisplay: false
+//});
 
-feature1.merge(master);
+//feature1.merge(master);
 
 
-stage_16_0.commit({
-  messageDisplay: false
-});
+//stage_16_0.commit({
+//  messageDisplay: false
+//});
 
 var topicStage1 = gitgraph.branch({
   parentBranch: stage_16_0,
@@ -135,9 +139,9 @@ topicStage1.commit("A feature to go into next Preview").commit({
   messageDisplay: false
 });
 
-stage_16_0.commit({
-  messageDisplay: false
-});
+//stage_16_0.commit({
+//  messageDisplay: false
+//});
 
 release_16_0.commit({
   message: "16.0 Preview 1 candiates",
@@ -147,13 +151,33 @@ release_16_0.commit({
 
 topicStage1.merge(stage_16_0);
 
-master.commit({
-  messageDisplay: false
+var feature1 = gitgraph.branch({
+  parentBranch: release_16_0,
+  name: "topic branch",
+  column: relTopic
 });
+
+master.commit({
+  messageDisplay: false,
+  message: "3"
+});
+
+
+feature1.commit({
+  messageDisplay: false,
+  message: "100"
+});
+
+feature1.commit({
+  messageDisplay: false,
+  message: "200"
+});
+
+feature1.merge(release_16_0)
 
 var featureNet = gitgraph.branch({
   parentBranch: master,
-  name: "NetCore",
+  name: "topic branch",
   column: featureCol
 });
 
@@ -161,9 +185,13 @@ featureNet.commit({
   messageDisplay: false
 });
 
-master.commit({
+featureNet.commit({
   messageDisplay: false
 });
+
+//master.commit({
+//  messageDisplay: false
+//});
 
 var topicFeature1 = gitgraph.branch({
   parentBranch: featureNet,
@@ -218,12 +246,13 @@ stage_16_0.commit({
   messageDisplay: false
 });
 
-master.merge(topicMaster1);
+//master.merge(topicMaster1);
 
 
-topicMaster1.commit({
-  messageDisplay: false
-});
+//topicMaster1.commit({
+//  messageDisplay: false
+//});
+
 topicMaster1.merge(master);
 
 master.commit({
@@ -232,7 +261,7 @@ master.commit({
 
 var feature2 = gitgraph.branch({
   parentBranch: master,
-  name: "feature/2",
+  name: "topic branch",
   column: teamCol
 });
 
