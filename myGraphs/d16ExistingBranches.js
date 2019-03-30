@@ -74,6 +74,12 @@ var master = gitgraph.branch({
 });
 master.commit("Initial commit");
 
+var genericL1 = gitgraph.branch({
+  parentBranch: master,
+  name: "an L1 branch",
+  column: teamCol
+ });
+
 master.commit({
   messageDisplay: false,
   message: "1"
@@ -82,7 +88,7 @@ master.commit({
 
 var stage_16_0 = gitgraph.branch({
   parentBranch: master,
-  name: "lab/d16.0stg",
+  name: "d16.0stg",
   column: stageCol
 });
 stage_16_0.commit({
@@ -102,11 +108,7 @@ master.commit({
   message: "2"
 });
 
-//var feature1 = gitgraph.branch({
-//  parentBranch: master,
-//  name: "topic branch",
-//  column: teamCol
-//});
+
 
 stage_16_0.commit({
   messageDisplay: false
@@ -118,17 +120,17 @@ var release_16_0 = gitgraph.branch({
   column: releaseCol
 });
 
-//feature1.commit("A feature to go into a futre release").commit({
-//  messageDisplay: false
-//});
+genericL1.commit("A feature to go into a futre release").commit({
+ messageDisplay: false
+});
 
-//feature1.merge(master);
+genericL1.merge(master);
 
 
 //stage_16_0.commit({
 //  messageDisplay: false
 //});
-
+/* 
 var topicStage1 = gitgraph.branch({
   parentBranch: stage_16_0,
   name: "topic branch",
@@ -138,7 +140,7 @@ var topicStage1 = gitgraph.branch({
 topicStage1.commit("A feature to go into next Preview").commit({
   messageDisplay: false
 });
-
+ */
 //stage_16_0.commit({
 //  messageDisplay: false
 //});
@@ -148,14 +150,14 @@ release_16_0.commit({
   tagColor: 'gray',
   messageDisplay: false
 });
-
+/* 
 topicStage1.merge(stage_16_0);
 
-var feature1 = gitgraph.branch({
+var genericL1 = gitgraph.branch({
   parentBranch: release_16_0,
   name: "topic branch",
   column: relTopic
-});
+}); */
 
 master.commit({
   messageDisplay: false,
@@ -163,17 +165,18 @@ master.commit({
 });
 
 
-feature1.commit({
+genericL1.commit({
   messageDisplay: false,
   message: "100"
-});
+}); 
 
-feature1.commit({
+genericL1.commit({
   messageDisplay: false,
   message: "200"
 });
 
-feature1.merge(release_16_0)
+/* 
+genericL1.merge(release_16_0)
 
 var featureNet = gitgraph.branch({
   parentBranch: master,
@@ -193,29 +196,29 @@ featureNet.commit({
 //  messageDisplay: false
 //});
 
-var topicFeature1 = gitgraph.branch({
+var topicgenericL1 = gitgraph.branch({
   parentBranch: featureNet,
   name: "topic branch",
   column: topicFeatureCol
 });
 
-topicFeature1.commit({
+topicgenericL1.commit({
   messageDisplay: false
 });
 
 featureNet.commit({
   messageDisplay: false
 });
-
+ */
 master.commit({
   messageDisplay: false
 });
-
-topicFeature1.commit({
+/* 
+topicgenericL1.commit({
   messageAuthorDisplay: false
 });
 
-topicFeature1.merge(featureNet);
+topicgenericL1.merge(featureNet);
 
 var topicMaster1 = gitgraph.branch({
   parentBranch: master,
@@ -226,7 +229,7 @@ var topicMaster1 = gitgraph.branch({
 
 topicMaster1.commit({
   messageDisplay: false
-});
+}); */
 
 release_16_0.commit({
   messageDisplay: false
@@ -237,10 +240,10 @@ master.commit({
   messageDisplay: false
 });
 
-
+/* 
 topicMaster1.commit({
   messageDisplay: false
-});
+}); */
 
 stage_16_0.commit({
   messageDisplay: false
@@ -252,7 +255,7 @@ stage_16_0.commit({
 //topicMaster1.commit({
 //  messageDisplay: false
 //});
-
+/* 
 topicMaster1.merge(master);
 
 master.commit({
@@ -277,22 +280,22 @@ var topicMaster2 = gitgraph.branch({
   parentBranch: master,
   name: "topic branch",
   column: topicMasterCol
-});
+}); */
 
 stage_16_0.commit({
   messageDisplay: false
 });
-
+/* 
 topicMaster2.commit({
   messageDisplay: false
 });
-
+ */
 stage_16_0.merge(master);
 
 stage_16_0.merge(release_16_0);
-
+/* 
 topicMaster2.merge(master);
-
+ */
 release_16_0.commit({
   messageDisplay: false
 });
@@ -300,15 +303,31 @@ release_16_0.commit({
 master.commit({
   messageDisplay: false
 });
-
+/* 
 featureNet.commit({
   messageDisplay: false
+}); */
+
+genericL1.commit({
+  messageDisplay: false,
+  message: "500"
+});
+
+genericL1.merge(master);
+
+master.commit({
+  messageDisplay: false
+});
+
+genericL1.commit({
+  messageDisplay: false,
+  message: "600"
 });
 
 
 var stage_16_1 = gitgraph.branch({
   parentBranch: master,
-  name: "lab/d16.1stg",
+  name: "d16.1stg",
   column: stageCol
 });
 stage_16_1.commit({
@@ -320,7 +339,7 @@ stage_16_1.commit({
 stage_16_1.commit({
   messageDisplay: false
 });
-
+/* 
 feature2.commit({
   messageDisplay: false
 });
@@ -330,7 +349,7 @@ feature2.merge(master);
 featureNet.commit({
   messageDisplay: false
 });
-
+ */
 var release_16_1 = gitgraph.branch({
   parentBranch: stage_16_1,
   name: "rel/16.1",
@@ -345,9 +364,9 @@ release_16_1.commit({
 release_16_1.commit({
   messageDisplay: false
 });
-
+/* 
 featureNet.merge(master);
-
+ */
 stage_16_1.commit({
   messageDisplay: false
 });
